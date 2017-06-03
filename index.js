@@ -83,7 +83,7 @@ app.use('/api/query', function(req, res){
                     
             if(response && response.statusCode && response.statusCode == 200) {
                 let $ = cheerio.load(body);
-                let text = $('script:not([type])').eq(6).text();
+                let text = $('script:contains("window._offers")').text();;
                 
                 let tmp = '';
                 try{
