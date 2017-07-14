@@ -82,12 +82,13 @@ app.use('/api/query', function(req, res){
                 console.log(error);
                     
             if(response && response.statusCode && response.statusCode == 200) {
+                //fs.writeFileSync('tmp.tmp', body);
                 let $ = cheerio.load(body);
-                let text = $('script:contains("window._offers")').text();;
+                let text = $('script:contains("window.__serp_data__")').text();;
                 
                 let tmp = '';
                 try{
-                    tmp = text.match(/window._offers = (.*);\s+window._region/)[1];
+                    tmp = text.match(/window.__serp_data__=(.*);/)[1];
                     
                     let obj = JSON.parse(tmp); 
                     let first_key = '';
